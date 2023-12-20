@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.chillyfacts.com</groupId>
+  <artifactId>my-app</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>my-app</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+ 
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+	<dependency>
+      <groupId>net.sourceforge.tess4j</groupId>
+      <artifactId>tess4j</artifactId>
+      <version>4.5.4 </version> <!-- or whatever the latest version is -->
+    </dependency>
+	<dependency>
+    <groupId>com.chillyfacts.com</groupId>
+    <artifactId>anything</artifactId>
+    <version>anything</version>
+    <scope>system</scope>
+    <systemPath>${basedir}/lib/tess4j-5.9.0.jar</systemPath>
+    </dependency>
+  </dependencies>
+  
+
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+	      <plugin>
+	          <groupId>com.chillyfacts.com</groupId>
+              <artifactId>maven-shade-plugin</artifactId>
+              <version>2.1</version>
+              <executions>
+                  <execution>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>shade</goal>
+                      </goals>
+                      <configuration>
+                          <transformers>
+                              <transformer
+                                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                  <mainClass>com.chillyfacts.com.App</mainClass>
+                              </transformer>
+                          </transformers>
+                      </configuration>
+                  </execution>
+              </executions>
+		  </plugin>
+      </plugins>
+	</pluginManagement>  
+  </build>
+</project>
